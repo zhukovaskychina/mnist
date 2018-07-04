@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.zhukovasky.mnist.config.ModelConfig",
+      "name": "tensorflow.model",
+      "type": "com.zhukovasky.mnist.config.ModelConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.zhukovasky.mnist.config.ModelConfig",
+      "name": "tensorflow.model.model-path",
+      "type": "java.lang.String"
+    }
+  ]
+}
