@@ -18,11 +18,12 @@ public class RecognizeService {
 	private ModelConfig modelConfig;
 	
 	
-	private SameDiff graphSD = TFGraphMapper.getInstance().importGraph(new File(modelConfig.getModelPath()));
+
 	
 	public INDArray recognizeMnistRegression(INDArray input) {
-		this.graphSD.associateArrayWithVariable(input, graphSD.variableMap().get("input"));
-		INDArray predictionArray=this.graphSD.execAndEndResult();
+	    SameDiff graphSD = TFGraphMapper.getInstance().importGraph(new File(modelConfig.getModelPath()));
+		graphSD.associateArrayWithVariable(input, graphSD.variableMap().get("input"));
+		INDArray predictionArray=graphSD.execAndEndResult();
 		return predictionArray;
 	}
 	
