@@ -1,0 +1,7 @@
+mnist
+Description
+Tensorflow训练出来的模型，利用deeplearning4j 实现加载模型导入，然后部署到相应环境上去
+
+Software Architecture
+Software architecture description
+
