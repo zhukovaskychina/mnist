@@ -56,7 +56,7 @@
     </appender>
     ​
 
-    <logger name="com.tuiguangjia.wechats" level="INFO"/>
+    <logger name="com.zhukovasky" level="INFO"/>
     <logger name="org.springframework.web" level="INFO"/>
     <!-- 其他未配置的日志输出统一使用root方式 -->
     <root level="INFO">
