@@ -1,6 +1,8 @@
 package com.zhukovasky.mnist.tensorflow.rest;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
 import org.nd4j.autodiff.samediff.SameDiff;
@@ -32,7 +34,11 @@ public class MnistRest {
     @ApiOperation(value = "上传Mnist数据信息，用于返回概率数组", notes = "通过主键ID删除单条任务数据,返回是否成功标志")
 	public ReturnJson recognizeInputs(@RequestBody(required = true) int[] inputImagePoints) {
 		INDArray indArray=this.recognizeService.wiredInputArrays(inputImagePoints);
-	    INDArray predictions=this.recognizeService.recognizeMnistRegression(indArray);
-		return ReturnJson.success(predictions); 
+	    INDArray predictionsRegression=this.recognizeService.recognizeMnistRegression(indArray);
+	    INDArray predictionsConvolution=this.recognizeService.recognizeMnistConvolutional(indArray);
+		Map<String,INDArray> resultMap=new HashMap<String,INDArray>();
+		resultMap.put("output1", predictionsRegression);
+		resultMap.put("output2", predictionsConvolution);
+	    return ReturnJson.success(resultMap); 
 	}
 }

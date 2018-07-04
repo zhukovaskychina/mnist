@@ -11,22 +11,28 @@ import org.springframework.stereotype.Service;
 
 import com.zhukovasky.mnist.config.ModelConfig;
 
-@Service()
+@Service
 public class RecognizeService {
 
-	@Autowired
-	private ModelConfig modelConfig;
 	
+	@Autowired
+	private ModelAPIService modelAPIService;
 	
 
 	
 	public INDArray recognizeMnistRegression(INDArray input) {
-	    SameDiff graphSD = TFGraphMapper.getInstance().importGraph(new File(modelConfig.getModelPath()));
+	    SameDiff graphSD = this.modelAPIService.loadRegressionAPI();
 		graphSD.associateArrayWithVariable(input, graphSD.variableMap().get("input"));
 		INDArray predictionArray=graphSD.execAndEndResult();
 		return predictionArray;
 	}
 	
+	public INDArray recognizeMnistConvolutional(INDArray input) {
+	    SameDiff graphSD = this.modelAPIService.loadConvolutionalAPI();
+		graphSD.associateArrayWithVariable(input, graphSD.variableMap().get("input"));
+		INDArray predictionArray=graphSD.execAndEndResult();
+		return predictionArray;
+	}
 	public INDArray wiredInputArrays( int[] inputImagePoints) {
 		INDArray ind=Nd4j.create(inputImagePoints);
 		//(255-np.array(inputImagePoints))

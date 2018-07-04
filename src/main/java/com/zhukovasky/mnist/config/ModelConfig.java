@@ -11,15 +11,31 @@ import org.springframework.stereotype.Component;
 public class ModelConfig {
 	
 	
-	private String modelPath;
+	private String modelConvolutionalPath;
 
-	public String getModelPath() {
-		return modelPath;
+
+	private String modelRegressionPath;
+
+
+	public String getModelConvolutionalPath() {
+		return modelConvolutionalPath;
 	}
 
-	public void setModelPath(String modelPath) {
-		this.modelPath = modelPath;
+
+	public void setModelConvolutionalPath(String modelConvolutionalPath) {
+		this.modelConvolutionalPath = modelConvolutionalPath;
 	}
+
+
+	public String getModelRegressionPath() {
+		return modelRegressionPath;
+	}
+
+
+	public void setModelRegressionPath(String modelRegressionPath) {
+		this.modelRegressionPath = modelRegressionPath;
+	}
+	
 	
 	
 }
