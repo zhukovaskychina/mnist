@@ -30,9 +30,9 @@ public class MnistRest {
 	
 	@PostMapping(value="/api/mnist")
     @ApiOperation(value = "上传Mnist数据信息，用于返回概率数组", notes = "通过主键ID删除单条任务数据,返回是否成功标志")
-	public ReturnJson<INDArray> recognizeInputs(@RequestBody(required = true) int[] inputImagePoints) {
+	public ReturnJson recognizeInputs(@RequestBody(required = true) int[] inputImagePoints) {
 		INDArray indArray=this.recognizeService.wiredInputArrays(inputImagePoints);
 	    INDArray predictions=this.recognizeService.recognizeMnistRegression(indArray);
-		return ReturnJson.success(predictions);
+		return ReturnJson.success(predictions); 
 	}
 }
