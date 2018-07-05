@@ -31,15 +31,16 @@ public class MnistRest {
 	private RecognizeService recognizeService;
 	
 	@PostMapping(value="/api/mnist")
-    @ApiOperation(value = "上传Mnist数据信息，用于返回概率数组", notes = "通过主键ID删除单条任务数据,返回是否成功标志")
+    @ApiOperation(value = "上传Mnist数据信息，用于返回概率数组", notes = "根据返回的数据实现数组的标记")
 	public ReturnJson recognizeInputs(@RequestBody(required = true) double[] inputImagePoints) {
 		INDArray indArray=this.recognizeService.wiredInputArrays(inputImagePoints);
 	    INDArray predictionsRegression=this.recognizeService.recognizeMnistRegression(indArray);
-	   // INDArray predictionsConvolution=this.recognizeService.recognizeMnistConvolutional(indArray);
+	    INDArray predictionsConvolution=this.recognizeService.recognizeMnistConvolutional(indArray);
 		Map<String,double[]> resultMap=new HashMap<String,double[]>();
+
 		resultMap.put("output1", predictionsRegression.toDoubleVector());
-		
-		//resultMap.put("output2", predictionsConvolution);
+		resultMap.put("output2", predictionsConvolution.toDoubleVector());
+
 	    return ReturnJson.success(resultMap); 
 	}
 }
