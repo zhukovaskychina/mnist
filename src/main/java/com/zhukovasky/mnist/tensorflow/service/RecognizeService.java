@@ -32,6 +32,7 @@ public class RecognizeService {
 	
 	public INDArray recognizeMnistConvolutional(INDArray input) {
 	    SameDiff graphSD = this.modelAPIService.loadConvolutionalAPI();
+	    Map<String,SDVariable> map=graphSD.variableMap();
 		graphSD.associateArrayWithVariable(input, graphSD.variableMap().get("convolutional/input"));
 		INDArray predictionArray=graphSD.execAndEndResult();
 		return predictionArray;
