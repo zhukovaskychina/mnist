@@ -20,8 +20,8 @@
 		<tomcat.version>8.5.9</tomcat.version>
 		<commons-lang3.version>3.4</commons-lang3.version>
 		<commons-collections.version>3.2.2</commons-collections.version>
-		<nd4j.version>1.0.0-alpha</nd4j.version>
-		<dl4j.version>1.0.0-alpha</dl4j.version>
+		<nd4j.version>1.0.0-beta</nd4j.version>
+		<dl4j.version>1.0.0-beta</dl4j.version>
 		<nd4j.backend>nd4j-native-platform</nd4j.backend>
 		<logback.version>1.1.7</logback.version>
 		<swagger.version>2.7.0</swagger.version>
