@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
 import org.nd4j.autodiff.samediff.SameDiff;
 import org.nd4j.imports.graphmapper.tf.TFGraphMapper;
@@ -32,7 +34,7 @@ public class MnistRest {
 	
 	@PostMapping(value="/api/mnist")
     @ApiOperation(value = "上传Mnist数据信息，用于返回概率数组", notes = "根据返回的数据实现数组的标记")
-	public ReturnJson recognizeInputs(@RequestBody(required = true) double[] inputImagePoints) {
+	public ReturnJson recognizeInputs(@Valid @RequestBody(required = true) double[] inputImagePoints) {
 		INDArray indArray=this.recognizeService.wiredInputArrays(inputImagePoints);
 	    INDArray predictionsRegression=this.recognizeService.recognizeMnistRegression(indArray);
 	    INDArray predictionsConvolution=this.recognizeService.recognizeMnistConvolutional(indArray);
