@@ -25,7 +25,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/mnistRest")
+@RequestMapping("/mnist")
 @Api(description = "Mnist数据传输")
 public class MnistRest {
 
