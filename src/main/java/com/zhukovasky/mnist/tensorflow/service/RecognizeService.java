@@ -1,6 +1,7 @@
 package com.zhukovasky.mnist.tensorflow.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.nd4j.autodiff.samediff.SDVariable;
@@ -32,9 +33,20 @@ public class RecognizeService {
 	
 	public INDArray recognizeMnistConvolutional(INDArray input) {
 	    SameDiff graphSD = this.modelAPIService.loadConvolutionalAPI();
+	    INDArray keepProbe=Nd4j.create(new double[] {1.0});
 	    Map<String,SDVariable> map=graphSD.variableMap();
 		graphSD.associateArrayWithVariable(input, graphSD.variableMap().get("convolutional/input"));
+		graphSD.associateArrayWithVariable(keepProbe, graphSD.variableMap().get("convolutional/keepProbe"));
+		boolean isResolved=graphSD.allPlaceHolderVariablesResolved();
+		System.out.println(isResolved);
 		INDArray predictionArray=graphSD.execAndEndResult();
+		
+		//Map<String, INDArray> inputs=new HashMap<String,INDArray>();
+		//inputs.put("convolutional/input", input);
+		//inputs.put("convolutional/keepProbe", keepProbe);
+		//graphSD.execWithPlaceHolder(inputs);
+		//INDArray predictionArray=graphSD.execWithPlaceHolderAndEndResult(inputs);
+		
 		return predictionArray;
 	}
 	public INDArray wiredInputArrays( double[] inputImagePoints) {
